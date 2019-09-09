@@ -1,0 +1,8 @@
+<h2>{{ aboutMe.hon }}</h2><br>
+<h2>{{ aboutMe.keep }}</h2>
+<h2>{{ aboutMe.favNumber }}</h2>
+<ul>
+	<li *ngFor="let item of aboutMe.obj | keyvalue">
+		<b>{{item.key}}</b> - <b>{{item.value}}</b>
+	</li>
+</ul>
