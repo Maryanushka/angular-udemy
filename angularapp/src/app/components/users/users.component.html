@@ -1,3 +1,14 @@
-<p>
-  users works!
-</p>
+<h2>Users</h2>
+<ul>
+	<li *ngFor="let user of users">
+		<h3>{{ user.hon }}</h3>
+		<h4>{{ user.keep }}</h4>
+		<h4>{{ user.favNumber }}</h4>
+		<ol>
+			<li>{{ user.obj.genre }}</li>
+			<li>{{ user.obj.band }}</li>
+			<li>{{ user.obj.genreMovies }}</li>
+			<li>{{ user.obj.movie }}</li>
+		</ol>
+	</li>
+</ul>
