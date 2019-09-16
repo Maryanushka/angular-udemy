@@ -1,10 +1,11 @@
 <h2>Users</h2>
-<ul>
+<!-- <ul *ngIf="loaded && users.length > 0; else noUsers"> -->
+<ul *ngIf="loaded && users?.length > 0">
 	<li *ngFor="let user of users">
 		<h3>{{ user.hon }}</h3>
 		<h4>{{ user.keep }}</h4>
 		<h4>{{ user.favNumber }}</h4>
-		<ol>
+		<ol *ngIf="showExtended && user.obj">
 			<li>{{ user.obj.genre }}</li>
 			<li>{{ user.obj.band }}</li>
 			<li>{{ user.obj.genreMovies }}</li>
@@ -12,3 +13,9 @@
 		</ol>
 	</li>
 </ul>
+<!-- <ng-template #noUsers>
+	<h4>Not users found</h4>
+</ng-template> -->
+
+<h4 *ngIf="users?.length == 0">Not found</h4>
+<h4 *ngIf="!loaded">loading users..</h4>

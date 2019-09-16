@@ -17,17 +17,17 @@ export class UserComponent implements OnInit{
 		
 	}
 	ngOnInit() {
-		this.aboutMe = {
-			hon: "Honey you are great!",
-			keep: "Keep going",
-			favNumber: 7,
-			obj: {
-				genre: "Rock",
-				band: "MA",
-				genreMovies: "CyberPunk",
-				movie: "the Expance",
+		// this.aboutMe = {
+		// 	hon: "Honey you are great!",
+		// 	keep: "Keep going",
+		// 	favNumber: 7,
+		// 	obj: {
+		// 		genre: "Rock",
+		// 		band: "MA",
+		// 		genreMovies: "CyberPunk",
+		// 		movie: "the Expance",
 
-			}
-		}
+		// 	}
+		// }
 	}
 }
