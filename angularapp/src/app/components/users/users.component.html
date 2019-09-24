@@ -1,39 +1,55 @@
 <button (click)="showUserForm = !showUserForm" class="btn mb-3 btn-dark">Add user</button>
 <div *ngIf="showUserForm" class="card card-body mb-3">
 	<h2>Add User</h2>
-	<form (submit)="onSubmit($event)">
+	<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 		<div class="form-group">
 			<label>Name</label>
-			<input [(ngModel)]="user.name" type="text" name="name" class="form-control">
+			<input 
+				required
+				minlength="2"
+				type="text" 
+				name="name" 
+				class="form-control"
+				#userName = "ngModel"
+				[(ngModel)]="user.name" 
+				[ngClass]="{'is-invalid' : userName.errors && userName.touched}"
+			>
+			<span [hidden]="!userName.errors?.required" class="invalid-feedback">Name is required!</span>
+			<span [hidden]="!userName.errors?.minlength" class="invalid-feedback">Must be at least 2 characters!</span>
 		</div>
 		<div class="form-group">
 			<label>Life phrase</label>
-			<input [(ngModel)]="user.hon" type="text" name="hon" class="form-control">
+			<input 
+				required
+				minlength="2"
+				type="text" 
+				name="hon" 
+				class="form-control"
+				[(ngModel)]="user.hon"
+				#userHon = "ngModel"
+				[(ngModel)]="user.hon" 
+				[ngClass]="{'is-invalid' : userHon.errors && userHon.touched}"
+			>
+			<span [hidden]="!userHon.errors?.required" class="invalid-feedback">Life phrase is required!</span>
+			<span [hidden]="!userHon.errors?.minlength" class="invalid-feedback">Must be at least 2 characters!</span>
 		</div>
 		<div class="form-group">
-			<label>Favourite number</label>
-			<input [(ngModel)]="user.obj.favNumber" type="number" name="favNumber" class="form-control">
+			<label>Email</label>
+			<input 
+				required
+				pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+				[(ngModel)]="user.email" 
+				type="email" 
+				name="email" 
+				class="form-control"
+				#userEmail = "ngModel"
+				[(ngModel)]="user.email" 
+				[ngClass]="{'is-invalid' : userEmail.errors && userEmail.touched}"
+			>
+			<span [hidden]="!userEmail.errors?.required" class="invalid-feedback">Email phrase is required!</span>
+			<span [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">Wrong email!</span>
 		</div>
-		<div class="form-group">
-			<label>Favourite music genre</label>
-			<input [(ngModel)]="user.obj.genre" type="text" name="genre" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Favourite Band</label>
-			<input [(ngModel)]="user.obj.band" type="text" name="band" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Favourite movie genre</label>
-			<input [(ngModel)]="user.obj.genreMovies" type="text" name="genreMovies" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Favourite movie</label>
-			<input [(ngModel)]="user.obj.movie" type="text" name="movie" class="form-control">
-		</div>
-		<button class="btn btn-block mb-3" (click)="addNewUser();" [disabled]="user.name == '' || user.hon == ''">Add new User</button>
-		<!-- <button class="btn btn-block mb-3" [disabled]="!enableAdd"
-			(click)="addNewUser({name:'Oswald Cobblepot', hon:'AAAAAaarghhh!No ! It\'s not fear', isActive: true});">Add new
-			User</button> -->
+		<button class="btn btn-block mb-3"  [disabled]="!userForm.form.valid">Add new User</button>
 	</form>
 </div>
 <h2>Users</h2>
@@ -44,15 +60,11 @@
 			{{user.name}}
 		</h3>
 		<h4 [ngStyle]="currentStyle">#lifephrase:<br> {{ user.hon }}</h4>
-		<button *ngIf="user.obj" class="btn btn-dark btn-sm" (click)="user.hide = !user.hide">
+		<button class="btn btn-dark btn-sm" (click)="user.hide = !user.hide">
 			<i [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"></i>
 		</button>
-		<ul class="list-group" *ngIf="!user.hide && user.obj">
-			<li class="list-group-item">Favourite number: {{ user.obj.favNumber }}</li>
-			<li class="list-group-item">Favourite music genre: {{ user.obj.genre }}</li>
-			<li class="list-group-item">Favourite band: {{ user.obj.band }}</li>
-			<li class="list-group-item">Favourite movie genre: {{ user.obj.genreMovies }}</li>
-			<li class="list-group-item">Favourite movie: {{ user.obj.movie }}</li>
+		<ul class="list-group" *ngIf="!user.hide">
+			<li class="list-group-item">Email: {{ user.email }}</li>
 			<li class="list-group-item">Joined: {{ user.registered | date }}</li>
 		</ul>
 

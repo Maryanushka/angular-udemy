@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AboutMe } from '../../models/User'; 
 
 @Component({
@@ -11,13 +11,7 @@ export class UsersComponent implements OnInit {
 	user: AboutMe = {
 		name: '',
 		hon: '',
-		obj: {
-			favNumber: null,
-			genre: '',
-			band: '',
-			genreMovies: '',
-			movie: '',
-		},
+		email: '',
 		hide: true
 	};
 	users: AboutMe[];
@@ -25,23 +19,16 @@ export class UsersComponent implements OnInit {
 	loaded: boolean = false;
 	enableAdd: boolean = false;
 	showUserForm: boolean = false;
+	@ViewChild('userForm') form: any;
 
   constructor() { }
 
   ngOnInit() {
-		// setTimeout(() => {
 			this.users = [
 				{
 					name: "Jessica Jones",
 					hon: "You bother me!",
-					obj: {
-						favNumber: 7,
-						genre: "Rock",
-						band: "MA",
-						genreMovies: "Biopic",
-						movie: "A private war",
-
-					},
+					email: "jessica.jones@gmail.com",
 					isActive: true,
 					registered: new Date(),
 					hide: true
@@ -49,14 +36,7 @@ export class UsersComponent implements OnInit {
 				{
 					name: "Star lord",
 					hon: "Damn, you are cool!",
-					obj: {
-						favNumber: 33,
-						genre: "Funk",
-						band: "The Heavy",
-						genreMovies: "CyberPunk",
-						movie: "the Expance",
-						
-					},
+					email: "star.lord@gmail.com",
 					isActive: true,
 					registered: new Date(),
 					hide: true
@@ -64,14 +44,7 @@ export class UsersComponent implements OnInit {
 				{
 					name: "Miles Morales",
 					hon: "Hey there!",
-					obj: {
-						favNumber: 12,
-						genre: "Hip Hop",
-						band: "Griz",
-						genreMovies: "Comedy",
-						movie: "The Fresh Prince of Bel‑Air",
-
-					},
+					email: 'miles.morales@gmail.com',
 					isActive: false,
 					registered: new Date(),
 					hide: true
@@ -81,31 +54,16 @@ export class UsersComponent implements OnInit {
 			this.loaded = true;
 
 	}
-	
-	addNewUser(){
-		this.user.registered = new Date();
-		this.user.isActive = true;
-		this.users.unshift(this.user);
-		this.user = {
-			name: '',
-			hon: '',
-			obj: {
-				favNumber: null,
-				genre: '',
-				band: '',
-				genreMovies: '',
-				movie: '',
-			}}
-	}
 
-	onSubmit(e){
-		e.preventDefault();
-		console.log("1")
-	}
-
-	fireEvent(e){
-		console.log(e.target.value);
-		console.log(e.type);
+	onSubmit({value, valid} : {value: AboutMe, valid: boolean}){
+		if (!valid) {
+			console.log("not valid")
+		} else {
+			this.user.registered = new Date();
+			this.user.isActive = true;
+			this.users.unshift(value);
+			this.form.reset();
+		}
 	}
 
 }
