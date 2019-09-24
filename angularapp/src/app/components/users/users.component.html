@@ -4,35 +4,36 @@
 	<form (submit)="onSubmit($event)">
 		<div class="form-group">
 			<label>Name</label>
-			<input (keydown)="fireEvent($event)" type="text" name="name" class="form-control">
+			<input [(ngModel)]="user.name" type="text" name="name" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Life phrase</label>
-			<input (keydown)="fireEvent($event)" type="text" name="hon" class="form-control">
+			<input [(ngModel)]="user.hon" type="text" name="hon" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Favourite number</label>
-			<input (keydown)="fireEvent($event)" type="text" name="favnumber" class="form-control">
+			<input [(ngModel)]="user.obj.favNumber" type="number" name="favNumber" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Favourite music genre</label>
-			<input (keydown)="fireEvent($event)" type="text" name="genre" class="form-control">
+			<input [(ngModel)]="user.obj.genre" type="text" name="genre" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>Favourite number</label>
-			<input (keydown)="fireEvent($event)" type="text" name="band" class="form-control">
+			<label>Favourite Band</label>
+			<input [(ngModel)]="user.obj.band" type="text" name="band" class="form-control">
 		</div>
 		<div class="form-group">
-			<label>Favourite number</label>
-			<input (keydown)="fireEvent($event)" type="text" name="genreMovies" class="form-control">
+			<label>Favourite movie genre</label>
+			<input [(ngModel)]="user.obj.genreMovies" type="text" name="genreMovies" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Favourite movie</label>
-			<input (keydown)="fireEvent($event)" type="text" name="movie" class="form-control">
+			<input [(ngModel)]="user.obj.movie" type="text" name="movie" class="form-control">
 		</div>
-		<button class="btn btn-block mb-3" [disabled]="!enableAdd"
+		<button class="btn btn-block mb-3" (click)="addNewUser();" [disabled]="user.name == '' || user.hon == ''">Add new User</button>
+		<!-- <button class="btn btn-block mb-3" [disabled]="!enableAdd"
 			(click)="addNewUser({name:'Oswald Cobblepot', hon:'AAAAAaarghhh!No ! It\'s not fear', isActive: true});">Add new
-			User</button>
+			User</button> -->
 	</form>
 </div>
 <h2>Users</h2>

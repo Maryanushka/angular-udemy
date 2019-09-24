@@ -8,10 +8,22 @@ import { AboutMe } from '../../models/User';
 })
 
 export class UsersComponent implements OnInit {
+	user: AboutMe = {
+		name: '',
+		hon: '',
+		obj: {
+			favNumber: null,
+			genre: '',
+			band: '',
+			genreMovies: '',
+			movie: '',
+		},
+		hide: true
+	};
 	users: AboutMe[];
-	showExtended: boolean = true;
+	showExtended: boolean = false;
 	loaded: boolean = false;
-	enableAdd: boolean = true;
+	enableAdd: boolean = false;
 	showUserForm: boolean = false;
 
   constructor() { }
@@ -70,8 +82,20 @@ export class UsersComponent implements OnInit {
 
 	}
 	
-	addNewUser(user: AboutMe){
-		this.users.push(user);
+	addNewUser(){
+		this.user.registered = new Date();
+		this.user.isActive = true;
+		this.users.unshift(this.user);
+		this.user = {
+			name: '',
+			hon: '',
+			obj: {
+				favNumber: null,
+				genre: '',
+				band: '',
+				genreMovies: '',
+				movie: '',
+			}}
 	}
 
 	onSubmit(e){
