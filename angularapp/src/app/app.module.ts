@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.components';
 import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DataService } from './services/data.service';
+import { UserService } from './services/user.service';
+import { PostService } from './services/post.service';
+import { PostComponent } from './components/post/post.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,15 +17,17 @@ import { DataService } from './services/data.service';
 		UserComponent,
 		UsersComponent,
 		NavbarComponent,
+		PostComponent,
 		
 		
   ],
   imports: [
     BrowserModule,
 		AppRoutingModule,
-		FormsModule
+		FormsModule,
+		HttpClientModule
   ],
-	providers: [DataService],
+	providers: [UserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
