@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AboutMe } from '../../models/User'; 
 
 @Component({
@@ -8,103 +8,61 @@ import { AboutMe } from '../../models/User';
 })
 
 export class UsersComponent implements OnInit {
+	user: AboutMe = {
+		name: '',
+		hon: '',
+		email: '',
+		hide: true
+	};
 	users: AboutMe[];
-	showExtended: boolean = true;
+	showExtended: boolean = false;
 	loaded: boolean = false;
-	enableAdd: boolean = true;
-	currentClasses: object = {};
-	currentStyle: object = {};
+	enableAdd: boolean = false;
+	showUserForm: boolean = false;
+	@ViewChild('userForm') form: any;
 
   constructor() { }
 
   ngOnInit() {
-		// setTimeout(() => {
 			this.users = [
 				{
 					name: "Jessica Jones",
 					hon: "You bother me!",
-					obj: {
-						favNumber: 7,
-						genre: "Rock",
-						band: "MA",
-						genreMovies: "Biopic",
-						movie: "A private war",
-
-					},
-					image: "https://d1466nnw0ex81e.cloudfront.net/n_iv/600/3702839.jpg",
+					email: "jessica.jones@gmail.com",
 					isActive: true,
-					balance: 1000,
 					registered: new Date(),
+					hide: true
 				},
 				{
 					name: "Star lord",
 					hon: "Damn, you are cool!",
-					obj: {
-						favNumber: 33,
-						genre: "Funk",
-						band: "The Heavy",
-						genreMovies: "CyberPunk",
-						movie: "the Expance",
-					},
-					image: "https://www.gannett-cdn.com/-mm-/45fef64c223bfa4533bebe5bdd65793efc626cb9/c=18-165-1588-2260/local/-/media/USATODAY/USATODAY/2014/07/01/1404244326000-The-Legendary-Star-Lord-1-Pichelli-Variant.jpeg",
+					email: "star.lord@gmail.com",
 					isActive: true,
-					balance: 10.000,
 					registered: new Date(),
+					hide: true
 				},
 				{
 					name: "Miles Morales",
 					hon: "Hey there!",
-					obj: {
-						favNumber: 12,
-						genre: "Hip Hop",
-						band: "Griz",
-						genreMovies: "Comedy",
-						movie: "The Fresh Prince of Bel‑Air",
-
-					},
-					image: "https://i.pinimg.com/originals/81/67/de/8167de82b61a2e7a58e92784f63e9f0c.jpg",
+					email: 'miles.morales@gmail.com',
 					isActive: false,
-					balance: 100,
 					registered: new Date(),
+					hide: true
 				},
 			];
 
 			this.loaded = true;
-		// },2000);
-
-		
-		this.setCurrentClasses();
-		this.setCurrentStyles();
-		
-		// this.showExtended = false;
-
-		// this.addNewUser({
-		// 	hon: "Hey maan!",
-		// 	keep: "Wassup",
-		// 	favNumber: 9,
-			// obj: {
-			// 	genre: "Rap",
-			// 	band: "Tupac",
-			// 	genreMovies: "Boipic",
-			// 	movie: "Get rich or die tryin'",
-
-			// }
-		// })
 
 	}
-	
-	addNewUser(user: AboutMe){
-		this.users.push(user);
-	}
 
-	setCurrentClasses() {
-		this.currentClasses = {
-			"btn-success": this.enableAdd
-		}
-	}
-	setCurrentStyles() {
-		this.currentStyle = {
-			"padding-top": this.showExtended ? '0' : '20%'
+	onSubmit({value, valid} : {value: AboutMe, valid: boolean}){
+		if (!valid) {
+			console.log("not valid")
+		} else {
+			value.registered = new Date();
+			value.isActive = true;
+			this.users.unshift(value);
+			this.form.reset();
 		}
 	}
 

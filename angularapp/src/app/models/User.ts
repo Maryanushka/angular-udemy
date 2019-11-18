@@ -1,17 +1,10 @@
 export interface AboutMe {
 	name: string,
 	hon: string,
-	obj?: {
-		favNumber?: number,
-		genre?: string,
-		band?: string,
-		genreMovies?: string,
-		movie?: string,
-	},
-	image?: string,
+	email: string,
 	isActive?: boolean,
-	balance?: number,
-	registered?: any
+	registered?: any,
+	hide?: boolean
 }
 
 //  use ? if you want to display propertie optionally 
