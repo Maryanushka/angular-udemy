@@ -1,4 +1,4 @@
-export interface AboutMe {
+export interface User {
 	name: string,
 	hon: string,
 	email: string,
