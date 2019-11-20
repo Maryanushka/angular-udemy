@@ -11,7 +11,7 @@ import { PostService } from 'src/app/services/post.service';
 export class PostFormComponent implements OnInit {
 	@Input() currentPost: Post;
 	@Output() NewPost: EventEmitter<Post> = new EventEmitter();
-	@Output() updadedPost: EventEmitter<Post> = new EventEmitter();
+	@Output() updatedPost: EventEmitter<Post> = new EventEmitter();
 	@Input() isEdit: boolean;
 
 	constructor(private postService: PostService) { }
@@ -26,13 +26,18 @@ export class PostFormComponent implements OnInit {
 		else{
 			this.postService.savePost({title, body} as Post).subscribe(post => {
 				this.NewPost.emit(post);
+				console.log(this)
 			})
+			this.currentPost.body = '';
+			this.currentPost.title = '';
 		}
 	}
 	updatePost(){
+		console.log(this)
+		console.log(this.currentPost)
 		this.postService.updatePost(this.currentPost).subscribe(post => {
 			this.isEdit = false;
-			this.updadedPost.emit(post);
+			this.updatedPost.emit(post);
 		})
 	}
 

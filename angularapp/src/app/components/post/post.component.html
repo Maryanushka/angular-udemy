@@ -6,7 +6,7 @@
 	<div class="card-body">
 		<h5 class="card-title">{{ post.title }}</h5>
 		<p class="card-text">{{ post.body }}</p>
-		<button class="btn btn-danger mr-1"><i class="fa fa-times" aria-hidden="true"></i></button>
+		<button (click)="removePost(post)" class="btn btn-danger mr-1"><i class="fa fa-times" aria-hidden="true"></i></button>
 		<button (click)="editPost(post)" class="btn btn-secondary"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 	</div>
 </div>
