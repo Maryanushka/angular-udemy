@@ -12,6 +12,7 @@ import { PostComponent } from './components/post/post.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { HomeComponent } from './components/home/home.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
 		PostComponent,
 		PostFormComponent,
 		HomeComponent,
+		PostDetailComponent,
 		
 		
   ],
