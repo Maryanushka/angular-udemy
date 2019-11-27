@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 		PostFormComponent,
 		HomeComponent,
 		PostDetailComponent,
+		NotFoundComponent,
 		
 		
   ],
